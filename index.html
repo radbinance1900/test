@@ -465,22 +465,48 @@
        SECTION
        ========================================================= */
 
+/* =========================================================
+   GAMES SECTION + FULL PAGE RED GRADIENT
+   ========================================================= */
+
 .games-section {
   position: relative;
+
   margin-top: 80px;
   padding: 70px 0 100px;
+
+  /* No box background */
+  background: transparent;
+  border-radius: 0;
+}
+
+/* Full-screen gradient behind the section */
+.games-section::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 100vw;
 
   background: linear-gradient(
     to bottom,
     #000000 0%,
-    #030000 15%,
-    #080101 35%,
-    #120202 60%,
-    #1c0303 80%,
-    #240404 100%
+    #010000 15%,
+    #030000 30%,
+    #080101 45%,
+    #100202 60%,
+    #190303 75%,
+    #240404 88%,
+    #2d0505 100%
   );
 
-  border-radius: 40px;
+  z-index: -1;
 }
     /* =========================================================
        GAME CARDS
