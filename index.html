@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Full Screen Gaming Template</title>
+  <title>Gaming Interface</title>
 
   <style>
     * {
@@ -14,56 +14,53 @@
     }
 
     :root {
-      /* Main colors */
       --black: #000000;
-      --yellow: #ffff35;
+      --dark: #050505;
 
-      /* EXACT requested RGB */
-      --section-rgb: rgb(15, 1, 0);
+      /* Existing theme */
+      --yellow: #ffff35;
+      --rgb-section: rgb(15, 1, 0);
+
+      --white: #ffffff;
+      --soft-white: #dedede;
+      --gray: #969696;
     }
 
     html,
     body {
       width: 100%;
-      height: 100%;
-      overflow: hidden;
+      min-height: 100%;
       background: var(--black);
-    }
-
-    body {
+      color: var(--white);
       font-family: Arial, Helvetica, sans-serif;
     }
 
-    /* =====================================================
-       FULL SCREEN FRAME
-       ===================================================== */
+    body {
+      overflow-x: hidden;
+    }
+
+
+    /* =========================================================
+       MAIN FULL-SCREEN FRAME
+       ========================================================= */
 
     .shell {
       position: relative;
 
       width: 100vw;
-      height: 100vh;
+      min-height: 100vh;
 
       background: var(--black);
 
-      /*
-        Yellow outline
-      */
       border: 4px solid var(--yellow);
 
-      /*
-        Same futuristic recessed shape
-      */
       clip-path: polygon(
         4% 0%,
         22% 0%,
-
         25% 4%,
         29% 5%,
-
         71% 5%,
         75% 4%,
-
         78% 0%,
         96% 0%,
 
@@ -72,13 +69,10 @@
 
         96% 100%,
         78% 100%,
-
         75% 96%,
         71% 95%,
-
         29% 95%,
         25% 96%,
-
         22% 100%,
         4% 100%,
 
@@ -89,9 +83,10 @@
       overflow: hidden;
     }
 
-    /* =====================================================
-       TOP RGB SECTION
-       ===================================================== */
+
+    /* =========================================================
+       TOP / BOTTOM RGB SECTIONS
+       ========================================================= */
 
     .shell::before {
       content: "";
@@ -103,14 +98,8 @@
       width: 60%;
       height: 48px;
 
-      /*
-        EXACT RGB
-      */
-      background: rgb(15, 1, 0);
+      background: var(--rgb-section);
 
-      /*
-        Shape of the upper recessed section
-      */
       clip-path: polygon(
         0% 65%,
         8% 35%,
@@ -129,10 +118,6 @@
       z-index: 1;
     }
 
-    /* =====================================================
-       BOTTOM RGB SECTION
-       ===================================================== */
-
     .shell::after {
       content: "";
 
@@ -143,10 +128,7 @@
       width: 60%;
       height: 48px;
 
-      /*
-        EXACT RGB
-      */
-      background: rgb(15, 1, 0);
+      background: var(--rgb-section);
 
       clip-path: polygon(
         0% 35%,
@@ -166,13 +148,14 @@
       z-index: 1;
     }
 
-    /* =====================================================
+
+    /* =========================================================
        NAVIGATION
-       ===================================================== */
+       ========================================================= */
 
     .navbar {
       position: relative;
-      z-index: 5;
+      z-index: 10;
 
       height: 135px;
 
@@ -186,9 +169,7 @@
     }
 
     .logo {
-      color: white;
-
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 900;
       letter-spacing: -2px;
     }
@@ -196,122 +177,441 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 70px;
+      gap: 60px;
     }
 
     .nav-links a {
       color: white;
       text-decoration: none;
 
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 500;
     }
 
     .nav-links a:hover {
-      opacity: 0.7;
+      color: var(--yellow);
     }
 
     .nav-button {
-      border: none;
+      border: 0;
 
       background: var(--yellow);
       color: #000;
 
-      padding: 20px 45px;
+      padding: 19px 38px;
 
-      border-radius: 18px;
+      border-radius: 17px;
 
-      font-size: 17px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 800;
 
       cursor: pointer;
     }
 
-    /* =====================================================
-       MAIN EMPTY SECTION
-       ===================================================== */
 
-    .hero {
+    /* =========================================================
+       PAGE CONTENT
+       ========================================================= */
+
+    .page {
       position: relative;
-      z-index: 3;
+      z-index: 5;
 
-      height: calc(100vh - 135px);
+      max-width: 1180px;
 
-      background: #050505;
+      margin: 0 auto;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      padding:
+        70px 45px
+        130px;
     }
 
-    /*
-      Empty placeholder.
-      Remove this if you want the section completely empty.
-    */
 
-    .hero-placeholder {
-      width: calc(100% - 120px);
-      height: calc(100% - 120px);
+    /* =========================================================
+       HERO
+       ========================================================= */
 
-      border: 1px dashed rgba(255, 255, 255, 0.08);
+    .hero {
+      display: grid;
 
-      border-radius: 22px;
+      grid-template-columns:
+        minmax(0, 1fr)
+        minmax(380px, 0.85fr);
 
-      display: flex;
+      gap: 80px;
+
       align-items: center;
-      justify-content: center;
 
-      color: rgba(255, 255, 255, 0.12);
+      min-height: 470px;
+    }
 
-      font-size: 14px;
-      letter-spacing: 5px;
+
+    /* Left side */
+
+    .hero-content {
+      max-width: 600px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+
+      margin-bottom: 20px;
+
+      color: var(--yellow);
+
+      font-size: 12px;
+      font-weight: 900;
+
+      letter-spacing: 2px;
       text-transform: uppercase;
     }
 
-    /* =====================================================
-       TABLET
-       ===================================================== */
+    .hero-title {
+      font-size: clamp(52px, 6vw, 82px);
 
-    @media (max-width: 900px) {
+      line-height: 0.92;
 
-      .navbar {
-        height: 110px;
+      letter-spacing: -5px;
 
-        padding: 0 30px;
-      }
+      font-weight: 900;
+
+      margin-bottom: 28px;
+    }
+
+    .hero-title .accent {
+      color: var(--yellow);
+    }
+
+    .hero-description {
+      max-width: 530px;
+
+      color: var(--soft-white);
+
+      font-size: 17px;
+      line-height: 1.65;
+
+      margin-bottom: 30px;
+    }
+
+
+    /* =========================================================
+       CTA BUTTONS
+       ========================================================= */
+
+    .hero-actions {
+      display: flex;
+
+      align-items: center;
+
+      gap: 12px;
+
+      flex-wrap: wrap;
+    }
+
+    .primary-button,
+    .secondary-button {
+      padding: 16px 24px;
+
+      border-radius: 13px;
+
+      font-size: 15px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+    }
+
+    .primary-button {
+      border: 2px solid var(--yellow);
+
+      background: var(--yellow);
+
+      color: #000;
+    }
+
+    .secondary-button {
+      border: 1px solid rgba(255, 255, 255, 0.3);
+
+      background: transparent;
+
+      color: white;
+    }
+
+    .secondary-button:hover {
+      border-color: var(--yellow);
+      color: var(--yellow);
+    }
+
+
+    /* =========================================================
+       RIGHT-SIDE FLOATING PREVIEW CARD
+       ========================================================= */
+
+    .preview-wrapper {
+      position: relative;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+    }
+
+    .preview-card {
+      position: relative;
+
+      width: 100%;
+      max-width: 470px;
+
+      min-height: 280px;
+
+      padding: 28px;
+
+      background: #0c0c0c;
+
+      border: 2px solid var(--yellow);
+
+      border-radius: 24px;
+
+      transform: rotate(-2deg);
+
+      box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .preview-card::before {
+      content: "";
+
+      display: block;
+
+      width: 100%;
+      height: 8px;
+
+      margin-bottom: 25px;
+
+      border-radius: 20px;
+
+      background: var(--yellow);
+    }
+
+    .preview-label {
+      display: inline-block;
+
+      padding: 8px 12px;
+
+      border-radius: 8px;
+
+      background: var(--yellow);
+
+      color: #000;
+
+      font-size: 11px;
+
+      font-weight: 900;
+
+      text-transform: uppercase;
+
+      margin-bottom: 20px;
+    }
+
+    .preview-card h3 {
+      font-size: 30px;
+
+      letter-spacing: -1px;
+
+      margin-bottom: 10px;
+    }
+
+    .preview-card p {
+      color: var(--gray);
+
+      line-height: 1.5;
+
+      margin-bottom: 28px;
+    }
+
+    .preview-choice {
+      display: flex;
+
+      justify-content: space-between;
+
+      align-items: center;
+
+      gap: 15px;
+    }
+
+    .choice {
+      padding: 13px 16px;
+
+      border-radius: 10px;
+
+      background: #151515;
+
+      color: white;
+
+      font-size: 13px;
+    }
+
+    .choice.active {
+      background: var(--yellow);
+
+      color: #000;
+
+      font-weight: 800;
+    }
+
+
+    /* =========================================================
+       SECTION
+       ========================================================= */
+
+    .games-section {
+      margin-top: 80px;
+    }
+
+    .section-heading {
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 4vw, 48px);
+
+      letter-spacing: -2px;
+
+      line-height: 1;
+
+      font-weight: 900;
+    }
+
+
+    /* =========================================================
+       GAME CARDS
+       ========================================================= */
+
+    .cards {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+      gap: 18px;
+    }
+
+    .game-card {
+      min-height: 220px;
+
+      padding: 25px;
+
+      background: #0a0a0a;
+
+      border: 1px solid rgba(255, 255, 255, 0.14);
+
+      border-radius: 20px;
+
+      transition:
+        transform 0.2s ease,
+        border-color 0.2s ease;
+    }
+
+    .game-card:hover {
+      transform: translateY(-5px);
+
+      border-color: var(--yellow);
+    }
+
+
+    /* Card icon */
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      margin-bottom: 35px;
+
+      border-radius: 13px;
+
+      background: var(--yellow);
+
+      color: #000;
+
+      font-size: 21px;
+
+      font-weight: 900;
+    }
+
+    .game-card:nth-child(2) .card-icon {
+      background: #0f0100;
+      border: 1px solid var(--yellow);
+      color: var(--yellow);
+    }
+
+    .game-card:nth-child(3) .card-icon {
+      background: #181818;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .game-card h3 {
+      font-size: 21px;
+
+      margin-bottom: 10px;
+
+      letter-spacing: -0.5px;
+    }
+
+    .game-card p {
+      color: var(--gray);
+
+      font-size: 14px;
+
+      line-height: 1.55;
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media (max-width: 950px) {
 
       .nav-links {
         gap: 25px;
       }
 
-      .nav-links a {
-        font-size: 14px;
-      }
-
-      .nav-button {
-        padding: 16px 28px;
-      }
-
       .hero {
-        height: calc(100vh - 110px);
+        grid-template-columns: 1fr;
+
+        gap: 50px;
       }
 
-      .hero-placeholder {
-        width: calc(100% - 60px);
-        height: calc(100% - 60px);
+      .hero-content {
+        max-width: 700px;
+      }
+
+      .preview-wrapper {
+        justify-content: flex-start;
+      }
+
+      .preview-card {
+        max-width: 600px;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
       }
     }
 
-    /* =====================================================
-       MOBILE
-       ===================================================== */
 
-    @media (max-width: 600px) {
+    @media (max-width: 650px) {
 
       .navbar {
         height: 100px;
 
-        padding: 0 20px;
+        padding: 0 25px;
       }
 
       .logo {
@@ -323,37 +623,57 @@
       }
 
       .nav-button {
-        padding: 14px 24px;
-        border-radius: 14px;
+        padding: 14px 23px;
+
+        font-size: 14px;
+      }
+
+      .page {
+        padding:
+          50px 25px
+          100px;
       }
 
       .hero {
-        height: calc(100vh - 100px);
+        min-height: auto;
       }
 
-      .hero-placeholder {
-        width: calc(100% - 30px);
-        height: calc(100% - 30px);
+      .hero-title {
+        font-size: 50px;
+
+        letter-spacing: -3px;
       }
 
-      .shell::before,
-      .shell::after {
-        left: 15%;
-        width: 70%;
+      .hero-description {
+        font-size: 15px;
+      }
+
+      .preview-card {
+        min-height: 250px;
+
+        padding: 22px;
+      }
+
+      .games-section {
+        margin-top: 60px;
       }
     }
   </style>
 </head>
 
+
 <body>
 
   <main class="shell">
 
-    <!-- Navigation -->
+    <!-- =====================================================
+         NAVIGATION
+         ===================================================== -->
+
     <header class="navbar">
 
       <div class="logo">
-        LOGO
+        YOUR LOGO
       </div>
 
       <nav class="nav-links">
@@ -371,14 +691,177 @@
     </header>
 
 
-    <!-- Empty main section -->
-    <section class="hero">
+    <!-- =====================================================
+         PAGE
+         ===================================================== -->
 
-      <div class="hero-placeholder">
-        Hero Area
-      </div>
+    <div class="page">
 
-    </section>
+
+      <!-- ===================================================
+           HERO
+           =================================================== -->
+
+      <section class="hero">
+
+        <div class="hero-content">
+
+          <span class="eyebrow">
+            A LITTLE GAME NIGHT
+          </span>
+
+          <h1 class="hero-title">
+            Your
+            <span class="accent">headline</span>
+            goes here.
+          </h1>
+
+          <p class="hero-description">
+            Add your supporting description here. This area is
+            designed for a short introduction, product message,
+            or description of what your experience offers.
+          </p>
+
+          <div class="hero-actions">
+
+            <button class="primary-button">
+              Primary Action
+            </button>
+
+            <button class="secondary-button">
+              Secondary Action
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- Floating preview component -->
+
+        <div class="preview-wrapper">
+
+          <div class="preview-card">
+
+            <span class="preview-label">
+              Your Turn
+            </span>
+
+            <h3>
+              Pick an option
+            </h3>
+
+            <p>
+              A simple interactive preview area for
+              your content, game, product, or feature.
+            </p>
+
+            <div class="preview-choice">
+
+              <div class="choice">
+                Option One
+              </div>
+
+              <div class="choice active">
+                Surprise Me
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ===================================================
+           CARDS SECTION
+           =================================================== -->
+
+      <section class="games-section">
+
+        <div class="section-heading">
+
+          <span class="eyebrow">
+            CHOOSE YOUR VIBE
+          </span>
+
+          <h2 class="section-title">
+            Something for everyone.
+          </h2>
+
+        </div>
+
+
+        <div class="cards">
+
+
+          <!-- Card 1 -->
+
+          <article class="game-card">
+
+            <div class="card-icon">
+              +
+            </div>
+
+            <h3>
+              First Category
+            </h3>
+
+            <p>
+              Add a short description explaining this
+              category, feature, or experience.
+            </p>
+
+          </article>
+
+
+          <!-- Card 2 -->
+
+          <article class="game-card">
+
+            <div class="card-icon">
+              ↔
+            </div>
+
+            <h3>
+              Second Category
+            </h3>
+
+            <p>
+              Add another short description for the
+              second option or experience.
+            </p>
+
+          </article>
+
+
+          <!-- Card 3 -->
+
+          <article class="game-card">
+
+            <div class="card-icon">
+              ★
+            </div>
+
+            <h3>
+              Third Category
+            </h3>
+
+            <p>
+              Add another description for your third
+              category, feature, or game.
+            </p>
+
+          </article>
+
+
+        </div>
+
+      </section>
+
+    </div>
 
   </main>
 
