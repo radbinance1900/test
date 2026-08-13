@@ -465,24 +465,31 @@
        SECTION
        ========================================================= */
 
-    .games-section {
-      margin-top: 80px;
-    }
+.games-section {
+  position: relative;
+  margin-top: 80px;
+  padding: 70px 0 100px;
 
-    .section-heading {
-      margin-bottom: 30px;
-    }
+  /*
+    Black at the top
+    → very dark reddish-black at the bottom
+  */
+  background:
+    linear-gradient(
+      to bottom,
+      #000000 0%,
+      #020000 25%,
+      #080101 55%,
+      #120202 78%,
+      #1a0303 100%
+    );
 
-    .section-title {
-      font-size: clamp(32px, 4vw, 48px);
-
-      letter-spacing: -2px;
-
-      line-height: 1;
-
-      font-weight: 900;
-    }
-
+  /*
+    Allows the glow to blend smoothly
+    into the surrounding black.
+  */
+  border-radius: 40px;
+}
 
     /* =========================================================
        GAME CARDS
